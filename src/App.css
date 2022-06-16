@@ -1,38 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+html,body {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'TeXGyreAdventor-Bold';
+  background-image: url('./ressources/FOND.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
 .App {
-  text-align: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.section-container {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.inputs {
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hexcode {
+  margin-bottom: 15px;
+}
+
+.input {
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  border: 0.5px solid white;
+  padding: 10px;
+  font-size: 16px;
   color: white;
+  background-color: black;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.input:focus {
+   outline: none; 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.color-square {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 15px;
 }
+
+ul {
+  list-style: none;
+}
+
+.color-values {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.color-values ul li {
+  text-align: left;
+}
+
+
