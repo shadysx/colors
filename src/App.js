@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import $ from "jquery";
 import md5 from 'md5';
+import Tooltip from '@mui/material/Tooltip';
 
 //Color converter
 import convert from 'color-convert';
@@ -49,7 +51,14 @@ function App() {
         .toUpperCase()
       );
     }
+
+    hideKeyboard()
   }
+
+  var hideKeyboard = function() {
+    document.activeElement.blur();
+    $("input").blur();
+  };
 
   useEffect(() => {
     let toCmyk = convert.hex.cmyk(hex)
@@ -71,7 +80,13 @@ function App() {
           <form onSubmit={handleSubmit}>
             <input className='input' onChange={handleInputChange}/>
             <h2 style={dynamicFontColor} className='hexcode'>Hex code: {`#${hex}`}</h2>
-            <div style={dynamicBackColor} className='color-square'></div>
+            <Tooltip 
+              arrow
+              placement="left"
+              title="Click to copy" 
+              className='tooltip'>
+              <div style={dynamicBackColor} className='color-square' onClick={() => {navigator.clipboard.writeText(`#${hex}`)}}></div>
+            </Tooltip>
           </form>
           <div className='color-values'>
             <ul className="rvb">

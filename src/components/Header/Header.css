@@ -1,13 +1,13 @@
 .header {
-    height: 80px;
-    width: 200px;
-    margin-top: 40px;
-    margin-left: 30px;
+    height: 70px;
+    width: 100%;
 }
+
 .logo-container {
     height: 100%; 
+    margin-top: 25px;
+    margin-left: 25px;
     background-image: url('../../ressources/LOGO.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 100%;
 }
