@@ -23,6 +23,8 @@ function App() {
   const [dynamicFontColor, setDynamicFontColor] = useState()
   const [rgb, setRgb] = useState([238, 201, 35])
   const [cmyk, setCmyk] = useState([0, 16, 85, 7])
+  const [opacity, setOpacity] = useState({opacity: 0})
+
 
   function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -41,7 +43,7 @@ function App() {
     e.preventDefault()
 
     if (input.length === 0) {
-      setHex('eec923')
+      setOpacity({opacity: 0})
     }
 
     else {
@@ -50,6 +52,7 @@ function App() {
         .slice(0,6)
         .toUpperCase()
       );
+      setOpacity({opacity: 1})
     }
 
     hideKeyboard()
@@ -58,6 +61,7 @@ function App() {
   var hideKeyboard = function() {
     document.activeElement.blur();
     $("input").blur();
+
   };
 
   useEffect(() => {
@@ -73,34 +77,45 @@ function App() {
 
   return (
     <div  className="App">
-      <Header/>
+      <div className='header'>
+        <div className='logo-container'>
+
+        </div>
+      </div>
       <div  className='section-container'>
        <div className='inputs'>
-          <h1>Entrez un nom </h1>
+          <h1 className='title'>Veuillez rentrer votre blaz</h1>
+          <h1 className='emoji'>💆‍♂️</h1>
           <form onSubmit={handleSubmit}>
-            <input className='input' onChange={handleInputChange}/>
-            <h2 style={dynamicFontColor} className='hexcode'>Hex code: {`#${hex}`}</h2>
-            <Tooltip 
-              arrow
-              placement="left"
-              title="Click to copy" 
-              className='tooltip'>
-              <div style={dynamicBackColor} className='color-square' onClick={() => {navigator.clipboard.writeText(`#${hex}`)}}></div>
-            </Tooltip>
+            <input 
+              className='input' 
+              onChange={handleInputChange}
+              spellCheck="false"
+            />
+            <div className='toggled-section' style={opacity}>
+              <h2 style={dynamicFontColor} className='hexcode'>Hex code: {`#${hex}`}</h2>
+              <Tooltip 
+                arrow
+                placement="left"
+                title="Click to copy" 
+                className='tooltip'>
+                <div style={dynamicBackColor} className='color-square' onClick={() => {navigator.clipboard.writeText(`#${hex}`)}}></div>
+              </Tooltip>
+              <div className='color-values'>
+                <ul className="rvb">
+                  <li>R {rgb[0]}</li>
+                  <li>V {rgb[1]}</li>
+                  <li>B {rgb[2]}</li>
+                </ul>
+                <ul className="rvb">
+                  <li>C {cmyk[0]} %</li>
+                  <li>M {cmyk[1]} %</li>
+                  <li>J {cmyk[2]} %</li>
+                  <li>N {cmyk[3]} %</li>
+                </ul>
+              </div>
+            </div>
           </form>
-          <div className='color-values'>
-            <ul className="rvb">
-              <li>R {rgb[0]}</li>
-              <li>V {rgb[1]}</li>
-              <li>B {rgb[2]}</li>
-            </ul>
-            <ul className="rvb">
-              <li>C {cmyk[0]}</li>
-              <li>M {cmyk[1]}</li>
-              <li>J {cmyk[2]}</li>
-              <li>N {cmyk[3]}</li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
